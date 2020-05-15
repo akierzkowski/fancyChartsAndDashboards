@@ -1,0 +1,43 @@
+CREATE TABLE  "TITANIC" (	
+  "ID"           NUMBER, 
+	"NAME"         VARCHAR2(255), 
+	"AGE"          NUMBER, 
+	"HOMETOWN"     VARCHAR2(255), 
+	"BOARDED"      VARCHAR2(50), 
+	"DESTINATION"  VARCHAR2(255), 
+	"LIFEBOAT"     VARCHAR2(50), 
+	"CLASS"        VARCHAR2(50), 
+	"SURVIVED"     VARCHAR2(1), 
+	"DEPARTMENT"   VARCHAR2(4000), 
+	"POSITION"     VARCHAR2(4000), 
+	"SEX"          VARCHAR2(4000), 
+PRIMARY KEY ("ID")
+)
+/
+
+CREATE OR REPLACE FORCE EDITIONABLE VIEW  "V_TITANIC_ALL_PEOPLE" ("ID", "NAME", "AGE", "HOMETOWN", "BOARDED", "DESTINATION", "LIFEBOAT", "CLASS", "SURVIVED", "DEPARTMENT", "POSITION", "SEX", "TYPE") AS 
+  SELECT 
+    ID,
+    NAME,
+    AGE,
+    HOMETOWN,
+    BOARDED,
+    DESTINATION,
+    LIFEBOAT,
+    CLASS,
+    CASE SURVIVED
+      WHEN 'Y' THEN 'Survivours'
+      WHEN 'N' THEN 'Victims'
+    END SURVIVED,
+    DEPARTMENT,
+    POSITION,
+    SEX,  
+    CASE 
+      WHEN AGE >= 18 THEN
+        DECODE(SEX,
+         'F', 'Women',
+         'M', 'Men')
+      ELSE 'Children'
+     END "TYPE"
+FROM TITANIC
+/
