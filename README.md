@@ -1,4 +1,4 @@
-# fancyChartsAndDashboards
+# Fancy charts and dashboards - customizing Oracle Jet in APEX
 
 Repository contains demo application that I have used in presentation "Fancy charts and dashboards - customizing Oracle Jet in APEX".
 Presetation was given:
